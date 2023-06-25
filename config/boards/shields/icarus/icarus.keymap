@@ -16,20 +16,26 @@
     continue-list = <UNDERSCORE BACKSPACE DELETE MINUS>;
 };
 
+/* Basic Definition */
+#define rpt  key_repeat
+#define CPY  LG(C)
+#define CUT  LG(X)
+#define PST  LG(V)
+#define FPST LG(LA(V))   // Finder cut-paste file
+
 /* Layers */
 #define DEF 0
 #define SYM 1
 #define NAV 2	
-#define BLT 3
+#define MSE 3
+#define BLT 4
 / { 
     combos {
         compatible = "zmk,combos";
         combo_sqt     { timeout-ms = <175>; key-positions = < 8  9>; bindings = <&kp SQT>; layers = <DEF>; };
-//      combo_rpt     { timeout-ms = <175>; key-positions = <27 28>; bindings = <&key_repeat>; };
         combo_caps    { timeout-ms = <175>; key-positions = < 4  5>; bindings = <&caps_word>; };
         combo_shft_l  { timeout-ms = <175>; key-positions = <13 14>; bindings = <&sk LSHFT>; };
         combo_shft_r  { timeout-ms = <175>; key-positions = <15 16>; bindings = <&sk LSHFT>; };
-//      combo_star    { timeout-ms = <175>; key-positions = < 5 15>; bindings = <&kp STAR>; layers = <SYM>; };
         combo_dot     { timeout-ms = <175>; key-positions = <16 17>; bindings = <&kp DOT>; layers = <SYM>; };
         combo_comma   { timeout-ms = <175>; key-positions = <17 18>; bindings = <&kp COMMA>; layers = <SYM>; };
         combo_numlock { timeout-ms = <175>; key-positions = <13 22>; bindings = <&kp KP_NUM>; layers = <NAV>; };
@@ -41,7 +47,15 @@
         combo_entr_r  { timeout-ms = <175>; key-positions = <23 24>; bindings = <&kp RETURN>; };
         combo_esc_l   { timeout-ms = <175>; key-positions = < 3 13>; bindings = <&kp ESC>; };
         combo_esc_r   { timeout-ms = <175>; key-positions = < 6 16>; bindings = <&kp ESC>; };
-        combo_NAV_l   { timeout-ms = <175>; key-positions = < 1  2  3>; bindings = <&tog NAV>; };
+
+        combo_ptab    { timeout-ms = <175>; key-positions = <11 12>; bindings = <&kp LG(LBRC)>; layers = <MSE>; };
+        combo_ntab    { timeout-ms = <175>; key-positions = <12 13>; bindings = <&kp RG(RBRC)>; layers = <MSE>; };
+        combo_bck     { timeout-ms = <175>; key-positions = <20 21>; bindings = <&kp LG(LBKT)>; layers = <MSE>; };
+        // combo_fwd     { timeout-ms = <175>; key-positions = <21 22>; bindings = <&kp RG(RBKT)>; layers = <MSE>; }; 
+        
+        combo_play    { timeout-ms = <175>; key-positions = < 2  3>; bindings = <&kp C_PP>; layers = <NAV MSE>; };
+        
+        combo_MSE_l   { timeout-ms = <175>; key-positions = < 1  2  3>; bindings = <&tog MSE>; };
         combo_NAV_r   { timeout-ms = <175>; key-positions = < 6  7  8>; bindings = <&tog NAV>; };
         combo_SYM_l   { timeout-ms = <175>; key-positions = < 2  3  4>; bindings = <&tog SYM>; };
         combo_SYM_r   { timeout-ms = <175>; key-positions = < 5  6  7>; bindings = <&tog SYM>; };
@@ -112,10 +126,19 @@
 
         nav {
             bindings = <
-            &kp LSHFT  &kp LG(LBKT)      &kp RG(RBKT)    &td LG(X) LG(C)  &td LG(LA(V)) LG(V)  /**/  &kp TAB   &kp PG_UP  &kp SPC   &kp DEL    &kp RSHFT
-            &kp LALT   &kp LG(LBRC)      &kp RG(RBRC)    &mkp LCLK        &mkp RCLK            /**/  &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT  &kp RALT
-                       &kp RC(RA(DOWN))  &kp RC(RA(UP))  &mkp MCLK                             /**/            &kp PG_DN  &kp HOME  &kp END
-                                                         &kp LGUI         &key_repeat          /**/  &none     &sk RGUI
+            &kp LSHFT  &kp C_MUTE    &kp C_PREV    &kp C_NEXT    &td CUT CPY   /**/  &kp TAB   &kp PG_UP  &kp SPC   &kp DEL    &kp RSHFT
+            &kp LALT   &kp C_VOL_UP  &kp LG(LBRC)  &kp RG(RBRC)  &td FPST PST  /**/  &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT  &kp RALT
+                       &kp C_VOL_DN  &kp LG(LBKT)  &kp RG(RBKT)                /**/            &kp PG_DN  &kp HOME  &kp END
+                                                   &kp LGUI      &rpt          /**/  &none     &sk RGUI
+            >;
+        };
+
+        mse {
+            bindings = <
+            &kp LSHFT  &kp C_MUTE    &kp C_PREV    &kp C_NEXT    &td CUT CPY   /**/  &kp TAB   &kp PG_UP  &kp SPC   &kp DEL    &kp RSHFT
+            &kp LALT   &mkp MB3      &mkp MB2      &mkp MB1      &td FPST PST  /**/  &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT  &kp RALT
+                       &mkp MB6      &mkp MB5      &mkp MB4                    /**/            &kp PG_DN  &kp HOME  &kp END
+                                                   &kp LGUI      &rpt          /**/  &none     &sk RGUI
             >;
         };
 
@@ -127,6 +150,5 @@
                                               &none        &none  /**/  &none  &none
             >;
         };
-
     };
 };
