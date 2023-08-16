@@ -29,6 +29,7 @@
 #define NAV 2	
 #define MSE 3
 #define BLT 4
+#define FUN 5
 / { 
     combos {
         compatible = "zmk,combos";
@@ -108,7 +109,7 @@
 
         def {
             bindings = <
-            &kp V  &mod LCTL M  &mod LALT K  &mod LGUI P   &lyr BLT Y  /**/  &lyr BLT Z    &mod RGUI B   &mod RALT DOT  &mod RCTL SEMI  &kp COMMA
+            &kp V  &mod LCTL M  &mod LALT K  &mod LGUI P   &lyr BLT Y  /**/  &lyr BLT Z    &mod RGUI B   &mod RALT DOT  &mod RCTL SEMI  &lyr FUN COMMA
             &kp S  &kp R        &kp T        &kp C         &kp W       /**/  &kp Q         &kp N         &kp A          &kp E           &kp I
                    &kp L        &kp D        &kp F                     /**/                &kp H         &kp O          &kp U
                                              &mod LSHFT X  &lyr SYM G  /**/  &lyr NAV SPC  &mod RSHFT J
@@ -148,6 +149,15 @@
             &none         &none   &none       &bootloader  &none  /**/  &none  &bootloader  &none       &none       &none
                           &none   &none       &none               /**/         &none        &none       &none
                                               &none        &none  /**/  &none  &none
+            >;
+        };
+
+        fun {
+            bindings = <
+            &none  &none  &none  &none  &none  /**/  &none  &kp F7  &kp F8  &kp F9  &none
+            &none  &none  &none  &none  &none  /**/  &none  &kp F4  &kp F5  &kp F6  &kp F10
+                   &none  &none  &none         /**/         &kp F1  &kp F2  &kp F3
+                                 &none  &none  /**/  &kp F12  &kp F11
             >;
         };
     };
