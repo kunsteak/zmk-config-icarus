@@ -127,8 +127,8 @@
 
         nav {
             bindings = <
-            &kp LSHFT  &kp C_MUTE    &kp C_PREV    &kp C_NEXT    &td CUT CPY   /**/  &kp TAB   &kp PG_UP  &kp SPC   &kp DEL    &kp RSHFT
-            &kp LALT   &kp C_VOL_UP  &kp LG(LBRC)  &kp RG(RBRC)  &td FPST PST  /**/  &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT  &kp RALT
+            &kp LSHFT  &kp C_MUTE    &kp C_PREV    &kp C_NEXT    &td CUT CPY   /**/  &kp TAB   &kp PG_UP  &kp UP    &kp DEL    &kp RSHFT
+            &kp LALT   &kp C_VOL_UP  &kp LG(LBRC)  &kp RG(RBRC)  &td FPST PST  /**/  &kp SPC   &kp LEFT   &kp DOWN  &kp RIGHT  &kp RALT
                        &kp C_VOL_DN  &kp LG(LBKT)  &kp RG(RBKT)                /**/            &kp PG_DN  &kp HOME  &kp END
                                                    &kp LGUI      &rpt          /**/  &none     &sk RGUI
             >;
